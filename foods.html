@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Admin Dashboard</title>
+  <link rel="stylesheet" href="./foods.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <button class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i> Menu
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="user-info">
+        <img src="images/logo.jpg" alt="Samantha" />
+      </div>
+      <h2 class="logo">Admin Dashboard<span></span></h2>
+      <ul class="menu">
+        <li><i class="fas fa-home"></i> Dashboard</li>
+        <li><i class="fas fa-list"></i> Reservations</li>
+        <li><i class="fas fa-box"></i> Orders/Catering</li>
+        <li><i class="fas fa-user"></i> Staff</li>
+        <li><i class="fas fa-chart-bar"></i> Reports</li>
+        <li class="active"><i class="fas fa-utensils"></i> Menu</li>
+        <li><i class="fas fa-cog"></i> Logout</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <input type="text" placeholder="Search here" class="search-box" />
+        <div class="header-icons">
+        </div>
+      </header>
+
+      <!-- Main Section -->
+      <section class="foods-section">
+        <div class="foods-header">
+          <div class="foodSearch">
+            <h3>Foods</h3>
+            <i class="fa-solid fa-filter"></i>
+          </div>
+          <button class="btn new-menu-btn">+ New Menu</button>
+        </div>
+
+        <!-- Food Cards Grid -->
+        <div class="food-cards">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1695712641569-05eee7b37b6d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Spicy Mozarella" />
+            <h4>Vegetable Lumpia</h4>
+            <p>Food / Lumpia</p>
+            <div class="card-actions">
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Burger Jumbo" />
+            <h4>Burger Jumbo Special with Spicy</h4>
+            <p>Food / Burger</p>
+            <div class="card-actions">
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pizza Nuggets" />
+            <h4>Pizza la Piazza Special Nuggets</h4>
+            <p>Food / Pizza</p>
+            <div class="card-actions">
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">4</button>
+        </div>
+
+        <!-- Chart Section -->
+        <!-- <div class="menu-comparison">
+          <h3>Menu Comparison</h3>
+          <div class="charts">
+            <div class="chart">
+              <div class="circle" data-percent="75">75%</div>
+              <p>Burger</p>
+              <a href=""></a>
+            </div>
+            <div class="chart">
+              <div class="circle" data-percent="32">32%</div>
+              <p>Pizza</p>
+            </div>
+            <div class="chart">
+              <div class="circle" data-percent="67">67%</div>
+              <p>Soft Drink</p>
+            </div>
+            <div class="chart">
+              <div class="circle" data-percent="67">67%</div>
+              <p>Soft Drink</p>
+            </div>
+            <div class="chart">
+              <div class="circle" data-percent="67">67%</div>
+              <p>Soft Drink</p>
+            </div>
+          </div>
+        </div> -->
+      </section>
+    </div>
+  </div>
+</body>
+
+<script>
+  // Toggle sidebar visibility
+  const menuToggle = document.getElementById("menu-toggle");
+  const sidebar = document.querySelector(".sidebar");
+
+  // Show/hide sidebar when clicking the menu button
+  menuToggle.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent closing when clicking the button
+    sidebar.classList.toggle("show");
+  });
+
+  // Close sidebar when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+      sidebar.classList.remove("show");
+    }
+  });
+</script>
+</html>
