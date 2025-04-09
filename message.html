@@ -4,74 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/message.css">
-    <title>Document</title>
+    <title>Dande's | Messaging</title>
+    <meta name="title" content="Dande's Resto & Catering Services">
+    <meta name="description" content="This is a Restaurant html template made by codewithsadee">
+    <link rel="shortcut icon" href="./assets/images/dandes_icon.png" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="preload" data-preaload>
-      <div class="circle"></div>
-      <p class="text">Dande's</p>
+  <div class="panel">
+    <div class="items">
+      <div class="logoHolder">
+        <img src="./assets/images/DANDE’S.png" alt="Restaurant Logo" class="logo" />
+      </div>
+      <div class="profilePicHolder">
+        <img src="./assets/images/sir.jpg" alt="Owner Profile" class="profilePic" />
+      </div>
+      <div class="say">
+        <h2>Edan Mark Vosotros</h2>
+        <h3 class="subtext">Now chatting with the owner of Dande's</h3>
+      </div>
     </div>
-    <div class="panel">
-        <div class="items">
-            <div class="logoHolder">
-                <img src="./assets/images/DANDE’S.png" alt="" class="logo">
-            </div>
-            <div class="profilePicHolder">
-              <img src="./assets/images/porf.jpg" alt="Admin Profile" class="profilePic">
-            </div>
-            <div class="say">
-                <h3>You are now chatting with the owner</h3>
-            </div>
-        </div>
+  </div>
+
+  <div class="chat">
+    <div class="chat-container">
+      <div class="messages-container" id="messages"></div>
+      <div class="message-input-container">
+        <input type="text" id="messageInput" placeholder="Type your message here..." />
+        <button id="sendButton"><i class="fa-regular fa-paper-plane"></i></button>
+      </div>
     </div>
-    <div class="chat">
-        <div class="chat-container">
-            <div class="messages-container" id="messages"></div>
-            <div class="message-input-container">
-              <input type="text" id="messageInput" placeholder="Type a message...">
-              <button id="sendButton">Send</button>
-            </div>
-          </div>
-    </div>
+  </div>
+
+  <script>
+    const messagesDiv = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    const ws = new WebSocket('ws://localhost:3000');
   
-    <script>
-      const messagesDiv = document.getElementById('messages');
-      const messageInput = document.getElementById('messageInput');
-      const sendButton = document.getElementById('sendButton');
-      const ws = new WebSocket('ws://localhost:3000');
-    
-      ws.addEventListener('message', (event) => {
-        const message = event.data;
-        displayMessage(message);
-      });
-    
-      sendButton.addEventListener('click', () => {
-        const message = messageInput.value;
-        ws.send(message);
-        displayMessage(message, true);
-        messageInput.value = '';
-      });
-    
-      function displayMessage(message, isSender = false) {
-        const messageContainer = document.createElement('div');
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        
-        messageContainer.classList.add('message-container');
-        
-        if (isSender) {
-          messageContainer.classList.add('sender-message-container');
-          messageElement.classList.add('message-bubble', 'sender-message-bubble');
-        } else {
-          messageElement.classList.add('message-bubble');
-        }
-        
-        messageContainer.appendChild(messageElement);
-        messagesDiv.appendChild(messageContainer);
-        
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    let typingTimer;
+    const doneTypingInterval = 2000; // 2 seconds
+  
+    ws.addEventListener('message', (event) => {
+      const message = event.data;
+      displayMessage(message);
+    });
+  
+    sendButton.addEventListener('click', () => {
+      sendMessage();
+    });
+  
+    // Detect typing and delay send
+    messageInput.addEventListener('keyup', () => {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(sendMessage, doneTypingInterval);
+    });
+  
+    messageInput.addEventListener('keydown', () => {
+      clearTimeout(typingTimer);
+    });
+  
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (!message) return;
+  
+      ws.send(message);
+      displayMessage(message, true);
+      messageInput.value = '';
+  
+      // Simulate bot response
+      setTimeout(() => {
+        displayMessage("Thank you for reaching out to us! The owner will respond to you shortly.");
+      }, 1000);
+    }
+  
+    function displayMessage(message, isSender = false) {
+      const messageContainer = document.createElement('div');
+      const messageElement = document.createElement('div');
+      messageElement.textContent = message;
+  
+      messageContainer.classList.add('message-container');
+      if (isSender) {
+        messageContainer.classList.add('sender-message-container');
+        messageElement.classList.add('message-bubble', 'sender-message-bubble');
+      } else {
+        messageElement.classList.add('message-bubble');
       }
-    </script>
-    
-  </body>
+  
+      messageContainer.appendChild(messageElement);
+      messagesDiv.appendChild(messageContainer);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
+  
+
+  
+</body>
+
+
+
 </html>
