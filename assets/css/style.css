@@ -2160,5 +2160,244 @@ textarea.input-field {
   margin-bottom: 10px;
 }
 
+/* Base styles */
+.venue-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+}
 
+.venue-slider {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: relative;
+}
+
+.venue-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  transform: translateX(100%);
+  z-index: 0;
+}
+
+.venue-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.venue-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venue-caption {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  color: #fff;
+  text-align: right;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+}
+
+.venue-subtitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffcc70;
+}
+
+.venue-title {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.venue-text {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Navigation buttons */
+.venue-btn {
+  display: grid;
+  position: absolute;
+  z-index: 1;
+  color: var(--gold-crayola);
+  font-size: 2.4rem;
+  border: 1px solid var(--gold-crayola);
+  width: 45px;
+  height: 45px;
+  place-items: center;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  transition: var(--transition-1);
+}
+
+.venue-btn:is(:hover, :focus-visible) {
+  background-color: var(--gold-crayola);
+  color: var(--black);
+}
+
+.venue-prev {
+  left:30px;
+}
+
+.venue-next {
+  right: 30px;
+}
+
+.venue-btn ion-icon { transform: rotate(-45deg); }
+
+/* Modal Container */
+.promo-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.promo-modal-content {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 90%;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  animation: slideUp 0.4s ease;
+}
+
+/* Close Button */
+.promo-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.8rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.promo-close:hover {
+  color: #ff9f0d;
+}
+
+/* Body Layout */
+.promo-modal-body {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Image Slider */
+.promo-slider-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+}
+
+.promo-slider {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.promo-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: #000;
+}
+
+/* Slider Buttons */
+.promo-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: none;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+}
+
+.promo-slider-btn:hover {
+  background: rgba(255, 159, 13, 0.9);
+  color: #000;
+}
+
+.promo-slider-btn.prev { left: 10px; }
+.promo-slider-btn.next { right: 10px; }
+
+/* Description */
+.promo-description {
+  flex: 1;
+  max-width: 400px;
+  text-align: left;
+}
+
+.promo-description h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ff9f0d;
+  margin-bottom: 1rem;
+}
+
+.promo-description p {
+  font-size: 1.05rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* Hidden Modal */
+.promo-modal.hidden {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; } 
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; } 
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.card-banner {
+  cursor: pointer;
+}
 
