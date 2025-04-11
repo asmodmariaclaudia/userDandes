@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* changed from center */
+    min-height: 100vh;
+    padding-top: 3rem; /* gives space from the top */
+    padding-bottom: 3rem; /* prevents it from touching the bottom */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.login-container {
+    background: #2c2c2c;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 400px;
+    color: #f8e9e0;
+    border: 1px solid #444;
+}
+
+.login-container h2 {
+    color: #e9b6a7;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 190px;
+    height: auto;
+    border-radius: 12px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    text-align: left;
+    font-size: 0.95rem;
+    color: #e4cfc4;
+    margin-bottom: 0.3rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 0.6rem;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #1f1f1f;
+    color: #f8e9e0;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  #password {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Padding for the icon */
+    box-sizing: border-box;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;  /* Position the icon inside, on the right side */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px; /* Adjust size */
+    color: #bbb; /* Icon color */
+  }
+.btn-login {
+    background-color: #ff9800;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #e68900;
+}
+
+.optional {
+    font-size: 0.8rem;
+    color: #a98c7b;
+}
+
+.or-divider {
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #bbb;
+    position: relative;
+}
+
+.google-btn {
+    background-color: #1a1a1a;
+    border: 1px solid #666;
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #f0c8b4;
+    transition: background 0.2s;
+}
+
+.google-btn:hover {
+    background-color: #2d2d2d;
+}
+
+.click{
+    color: #ff9800;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/login.css">
+    <title>Dande's | Log In</title>
+    <meta name="title" content="Dande's Resto & Catering Services">
+    <meta name="description" content="This is a Restaurant html template made by codewithsadee">
+    <link rel="shortcut icon" href="./assets/images/dandes_icon.png" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-container">
+            <!-- Logo Image (Adjust the src attribute to your logo path) -->
+            <img src="./assets/images/DANDE’S.png" alt="Logo" class="logo-img">
+        </div>
+        
+        <h2>Login</h2>
+    
+        <form id="loginForm">
+            <label>Email</label>
+            <input type="email" id="email" required>
+    
+            <label>Password</label>
+            <div class="password-container">
+                <input type="password" id="password" required>
+                <i id="togglePassword" class="fas fa-eye toggle-password"></i> 
+            </div>
+    
+            <button type="submit" class="btn-login">Login</button>
+    
+            <div class="optional">
+                <p>Forgot your password? <a href="#" class="click">Click here</a></p>
+            </div>
+        </form>
+    
+    </div>
+    
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+    
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+    
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+</body>
+</html>
