@@ -461,6 +461,7 @@
                   </h3>
 
                   <a href="" class="btn-text hover-underline label-2">View Promo</a>
+                  
 
                 </div>
 
@@ -807,7 +808,7 @@
 
 
       <!-- 
-        - #ABOUT
+        - #OWNER
       -->
 
       <section class="section testi text-center has-bg-image" id="owner"
@@ -1308,6 +1309,8 @@
         <div class="promo-description">
           <h3 id="promoTitle"></h3>
           <p id="promoText"></p>
+
+          <button id="promoRequestBtn" class="promo-request-btn">Request</button>
         </div>
       </div>
   
@@ -1470,6 +1473,19 @@
       openModal(setName);
     });
   });
+</script>
+
+<script>
+    const message = encodeURIComponent(
+    JSON.stringify({
+      title: "₱20 OFF",
+      minOrder: "Min. Order ₱150",
+      image: "https://via.placeholder.com/100x100.png?text=Promo", // Replace with your actual image URL
+      description: "Limited-time offer! Get ₱20 OFF with a min. order of ₱150."
+    })
+  );
+  window.location.href = `message.html?promo=${message}`;
+
 </script>
 
   

@@ -100,6 +100,30 @@
     }
   </script>
   
+  <script>
+    function displayPromoMessage(promo) {
+    const chatbox = document.getElementById("messages");
+
+    const promoBox = document.createElement("div");
+    promoBox.classList.add("promo-message");
+
+    promoBox.innerHTML = `
+      <div style="border: 1px solid #ddd; border-radius: 10px; padding: 10px; display: flex; margin: 10px 0; background: #fefefe; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <img src="${promo.image}" alt="Promo Image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px; margin-right: 10px;" />
+        <div>
+          <div style="font-weight: bold; font-size: 1.1em;">${promo.title}</div>
+          <div style="color: #777;">${promo.minOrder}</div>
+          <div style="margin-top: 5px;">${promo.description}</div>
+        </div>
+      </div>
+    `;
+
+    chatbox.appendChild(promoBox);
+}
+
+
+
+  </script>
 
   
 </body>
