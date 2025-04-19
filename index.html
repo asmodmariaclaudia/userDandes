@@ -1139,6 +1139,27 @@
           </a>
 
         </div>
+
+        <!-- Event Modal -->
+        <div id="eventModal" class="modal hidden">
+          <div class="modal-content dark-theme">
+            <button class="event-close-btn" aria-label="Close">&times;</button>
+            <div class="modal-body">
+              <div class="event-description">
+                <h3 id="eventTitle"></h3>
+                <p id="eventText"></p>
+              </div>
+              <div class="event-media">
+                <div class="event-slider-container">
+                  <button class="event-slider-btn prev">&#10094;</button>
+                  <div class="event-slider"></div>
+                  <button class="event-slider-btn next">&#10095;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
     </article>
@@ -1291,6 +1312,7 @@
   </a>
 
 
+  <!-- promo modal -->
   <div id="promoModal" class="promo-modal hidden">
     <div class="promo-modal-content">
       <span class="promo-close">&times;</span>
@@ -1330,6 +1352,8 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <!-- slider js -->
+
   <script>
     window.addEventListener('load', function () {
       const slides = document.querySelectorAll('[data-venue-slide]');
@@ -1365,6 +1389,8 @@
     });
   </script>
 
+  <!-- Music js -->
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
         const audio = document.getElementById("bg-music");
@@ -1383,6 +1409,7 @@
       });
   </script>
 
+<!-- promo js -->
 <script>
   const promoData = {
     "Set A": {
@@ -1475,7 +1502,104 @@
   });
 </script>
 
+<!-- event modal js-->
 <script>
+  const eventData = {
+    "Flavour so good you’ll try to eat with your eyes.": {
+      description: "Join us for a tasting session that brings out the best flavors in gourmet meals!",
+      media: [
+        "./assets/images/event-1.jpg",
+        "./assets/videos/.mp4"
+      ]
+    },
+    "Set B Event Title": {
+      description: "Healthy food event packed with nutrition and flavor!",
+      media: [
+        "./assets/images/event-2.jpg"
+      ]
+    },
+    "Set C Event Title": {
+      description: "Delicious recipes demo from the country's top chefs!",
+      media: [
+        "./assets/images/event-3.jpg",
+        "./assets/videos/event-3.mp4"
+      ]
+    }
+  };
+
+  const eventModal = document.getElementById('eventModal');
+  const eventCloseBtn = document.querySelector('.event-close-btn');
+  const eventTitle = document.getElementById('eventTitle');
+  const eventText = document.getElementById('eventText');
+  const eventSlider = document.querySelector('.event-slider');
+  const prevEventBtn = document.querySelector('.event-slider-btn.prev');
+  const nextEventBtn = document.querySelector('.event-slider-btn.next');
+  
+
+  let currentEventIndex = 0;
+
+  function openEventModal(title) {
+    const data = eventData[title];
+    if (!data) return;
+
+    eventTitle.textContent = title;
+    eventText.textContent = data.description;
+
+    eventSlider.innerHTML = '';
+    data.media.forEach(src => {
+      if (src.endsWith('.mp4')) {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.style.maxHeight = '300px';
+        eventSlider.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = title;
+        eventSlider.appendChild(img);
+      }
+    });
+
+    currentEventIndex = 0;
+    updateEventSlider();
+    eventModal.classList.remove('hidden');
+  }
+
+  function updateEventSlider() {
+    const width = eventSlider.clientWidth;
+    eventSlider.style.transform = `translateX(-${currentEventIndex * 100}%)`;
+  }
+
+  prevEventBtn.onclick = () => {
+    const max = eventSlider.children.length;
+    currentEventIndex = (currentEventIndex - 1 + max) % max;
+    updateEventSlider();
+  };
+
+  nextEventBtn.onclick = () => {
+    const max = eventSlider.children.length;
+    currentEventIndex = (currentEventIndex + 1) % max;
+    updateEventSlider();
+  };
+
+  eventCloseBtn.onclick = () => {
+    eventModal.classList.add('hidden');
+  };
+
+  // Attach event modal trigger to each event card
+  document.querySelectorAll('.event-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.card-title').innerText.trim();
+      openEventModal(title);
+    });
+  });
+</script>
+
+</script>
+
+<!-- request js (activate pag naa nay backend) -->
+<!-- <script>
     const message = encodeURIComponent(
     JSON.stringify({
       title: "₱20 OFF",
@@ -1486,7 +1610,7 @@
   );
   window.location.href = `message.html?promo=${message}`;
 
-</script>
+</script> -->
 
   
 
