@@ -1140,26 +1140,6 @@
 
         </div>
 
-        <!-- Event Modal -->
-        <div id="eventModal" class="modal hidden">
-          <div class="modal-content dark-theme">
-            <button class="event-close-btn" aria-label="Close">&times;</button>
-            <div class="modal-body">
-              <div class="event-description">
-                <h3 id="eventTitle"></h3>
-                <p id="eventText"></p>
-              </div>
-              <div class="event-media">
-                <div class="event-slider-container">
-                  <button class="event-slider-btn prev">&#10094;</button>
-                  <div class="event-slider"></div>
-                  <button class="event-slider-btn next">&#10095;</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </section>
 
     </article>
@@ -1338,6 +1318,43 @@
   
     </div>
   </div>
+
+  <!-- Event Modal -->
+  <div id="eventModal" class="event-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="modal-body">
+        <!-- Left side: Description -->
+        <div class="modal-description">
+          <h3 id="modalTitle" class="title-2">Event Title</h3>
+          <p id="modalSubtitle" class="label-2">Subtitle</p>
+          <p id="modalText" class="text">Event description goes here...</p>
+        </div>
+
+        <!-- Right side: Media -->
+        <div class="modal-media">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <img src="./assets/images/event-1.jpg" alt="Event Image 1" class="carousel-img" />
+            </div>
+            <div class="carousel-slide">
+              <img src="./assets/images/event-2.jpg" alt="Event Image 2" class="carousel-img" />
+            </div>
+            <div class="carousel-slide">
+              <img src="./assets/images/event-3.jpg" alt="Event Image 3" class="carousel-img" />
+            </div>
+          
+            <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+          </div>
+          <video controls class="modal-video">
+            <source src="./assets/videos/retuVid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 
@@ -1409,7 +1426,7 @@
       });
   </script>
 
-<!-- promo js -->
+<!-- promo modal js -->
 <script>
   const promoData = {
     "Set A": {
@@ -1504,99 +1521,47 @@
 
 <!-- event modal js-->
 <script>
-  const eventData = {
-    "Flavour so good you’ll try to eat with your eyes.": {
-      description: "Join us for a tasting session that brings out the best flavors in gourmet meals!",
-      media: [
-        "./assets/images/event-1.jpg",
-        "./assets/videos/.mp4"
-      ]
-    },
-    "Set B Event Title": {
-      description: "Healthy food event packed with nutrition and flavor!",
-      media: [
-        "./assets/images/event-2.jpg"
-      ]
-    },
-    "Set C Event Title": {
-      description: "Delicious recipes demo from the country's top chefs!",
-      media: [
-        "./assets/images/event-3.jpg",
-        "./assets/videos/event-3.mp4"
-      ]
-    }
-  };
+  const eventModal = document.getElementById("eventModal");
+  const closeModal = document.querySelector(".close-modal");
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
 
-  const eventModal = document.getElementById('eventModal');
-  const eventCloseBtn = document.querySelector('.event-close-btn');
-  const eventTitle = document.getElementById('eventTitle');
-  const eventText = document.getElementById('eventText');
-  const eventSlider = document.querySelector('.event-slider');
-  const prevEventBtn = document.querySelector('.event-slider-btn.prev');
-  const nextEventBtn = document.querySelector('.event-slider-btn.next');
-  
+  // Cycle slides
+  let currentCarousel = 0;
+  const carouselSlides = document.querySelectorAll(".carousel-slide");
 
-  let currentEventIndex = 0;
-
-  function openEventModal(title) {
-    const data = eventData[title];
-    if (!data) return;
-
-    eventTitle.textContent = title;
-    eventText.textContent = data.description;
-
-    eventSlider.innerHTML = '';
-    data.media.forEach(src => {
-      if (src.endsWith('.mp4')) {
-        const video = document.createElement('video');
-        video.src = src;
-        video.controls = true;
-        video.style.maxHeight = '300px';
-        eventSlider.appendChild(video);
-      } else {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = title;
-        eventSlider.appendChild(img);
-      }
+  function showCarouselSlide(index) {
+    carouselSlides.forEach((slide, i) => {
+      slide.classList.remove("active");
     });
-
-    currentEventIndex = 0;
-    updateEventSlider();
-    eventModal.classList.remove('hidden');
+    carouselSlides[index].classList.add("active");
   }
 
-  function updateEventSlider() {
-    const width = eventSlider.clientWidth;
-    eventSlider.style.transform = `translateX(-${currentEventIndex * 100}%)`;
+  function nextSlide() {
+    currentCarousel = (currentCarousel + 1) % carouselSlides.length;
+    showCarouselSlide(currentCarousel);
   }
 
-  prevEventBtn.onclick = () => {
-    const max = eventSlider.children.length;
-    currentEventIndex = (currentEventIndex - 1 + max) % max;
-    updateEventSlider();
-  };
+  function prevSlide() {
+    currentCarousel = (currentCarousel - 1 + carouselSlides.length) % carouselSlides.length;
+    showCarouselSlide(currentCarousel);
+  }
 
-  nextEventBtn.onclick = () => {
-    const max = eventSlider.children.length;
-    currentEventIndex = (currentEventIndex + 1) % max;
-    updateEventSlider();
-  };
-
-  eventCloseBtn.onclick = () => {
-    eventModal.classList.add('hidden');
-  };
-
-  // Attach event modal trigger to each event card
-  document.querySelectorAll('.event-card').forEach(card => {
+  // Trigger modal
+  document.querySelectorAll('.event-card').forEach((card) => {
     card.addEventListener('click', () => {
-      const title = card.querySelector('.card-title').innerText.trim();
-      openEventModal(title);
+      eventModal.style.display = "flex";
+      // Optionally populate modal fields dynamically
+      document.getElementById('modalTitle').innerText = card.querySelector(".card-title").innerText;
+      document.getElementById('modalSubtitle').innerText = card.querySelector(".card-subtitle").innerText;
+      document.getElementById('modalText').innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non lorem sapien.";
     });
   });
+
+  closeModal.onclick = () => eventModal.style.display = "none";
+  window.onclick = (e) => { if (e.target == eventModal) eventModal.style.display = "none"; }
 </script>
 
-</script>
 
 <!-- request js (activate pag naa nay backend) -->
 <!-- <script>
