@@ -590,6 +590,35 @@ body.nav-active { overflow: hidden; }
 
 .topbar { display: none; }
 
+/* Style for the Login Button in the Top Bar */
+#loginBtn {
+  background-color: var(--primary-color); /* Replace with your primary color variable */
+  color: var(--white); /* Replace with your white color variable */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#loginBtn:hover {
+  background-color: var(--primary-hover-color); /* Replace with your hover color variable */
+}
+
+/* Style for the User Profile Section */
+#userProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
 
 
 
@@ -601,7 +630,7 @@ body.nav-active { overflow: hidden; }
 .header .btn { display: none; }
 
 .header {
-  position: fixed;
+  position: static;
   top: 0;
   left: 0;
   width: 100%;
@@ -610,6 +639,7 @@ body.nav-active { overflow: hidden; }
   z-index: 4;
   border-block-end: 1px solid transparent;
   transition: var(--transition-1);
+  margin-top: 30px;
 }
 
 .header.active {
@@ -692,7 +722,7 @@ body.nav-active { overflow: hidden; }
   max-width: max-content;
   margin-inline: auto;
   margin-block-end: 60px;
-  height: 20px;
+  height: 60px;
 }
 
 .logo{
@@ -843,7 +873,7 @@ body.nav-active { overflow: hidden; }
   position: fixed; /* Change from sticky to fixed */
   bottom: 15px;
   left: 40px;
-  z-index: 100;
+  z-index: 20;
   background-color: var(--gold-crayola);
   width: 110px;
   height: 110px;
@@ -903,8 +933,9 @@ body.nav-active { overflow: hidden; }
 
 
 
+
 /*-----------------------------------*\
-  #SERVICE
+  #PROMO
 \*-----------------------------------*/
 
 .service .section-title { margin-block-end: 16px; }
@@ -1055,9 +1086,14 @@ body.nav-active { overflow: hidden; }
 .menu .grid-list { margin-block-end: 50px; }
 
 .menu-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
+  display: flex; /* Use flexbox for horizontal alignment */
+  flex-direction: row; /* Align items side by side */
+  align-items: center; /* Vertically center-align content */
+  gap: 20px; /* Add spacing between the picture and description */
+  padding: 20px; /* Add padding for better spacing */
+  background-color: var(--eerie-black-3); /* Optional: Background color for cards */
+  border-radius: var(--radius-24); /* Rounded corners */
+  box-shadow: var(--shadow-1); /* Add shadow for better visual separation */
 }
 
 .hover\:card .card-banner { background-color: var(--gold-crayola); }
@@ -1070,11 +1106,31 @@ body.nav-active { overflow: hidden; }
 }
 
 .menu-card .card-banner {
-  flex-shrink: 0;
-  border-radius: var(--radius-24);
+  flex-shrink: 0; /* Prevent the image from shrinking */
+  width: 150px; /* Set a fixed width for the image */
+  height: 150px; /* Set a fixed height for the image */
+  border-radius: var(--radius-24); /* Optional: Rounded corners for the image */
+  overflow: hidden; /* Ensure the image doesn't overflow */
 }
 
-.menu-card .card-title { transition: var(--transition-1); }
+.menu-card .card-banner img {
+  width: 100%; /* Ensure the image fills the container */
+  height: 100%; /* Maintain the aspect ratio */
+  object-fit: cover; /* Crop the image to fit the container */
+}
+
+.menu-card .card-content {
+  flex: 1; /* Allow the description to take up remaining space */
+  display: flex;
+  flex-direction: column; /* Stack description elements vertically */
+  gap: 10px; /* Add spacing between description elements */
+}
+
+.menu-card .card-title { 
+  font-size: var(--fontSize-title-3); /* Adjust title size */
+  font-weight: var(--weight-bold); /* Make the title bold */
+  color: var(--gold-crayola); /* Optional: Title color */
+ }
 
 .menu-card .card-title:is(:hover, :focus-visible) { color: var(--gold-crayola); }
 
@@ -1095,8 +1151,9 @@ body.nav-active { overflow: hidden; }
 }
 
 .menu-card .card-text {
-  color: var(--quick-silver);
-  line-height: var(--lineHeight-4);
+  font-size: var(--fontSize-body-4); /* Adjust text size */
+  color: var(--quick-silver); /* Optional: Text color */
+  line-height: var(--lineHeight-4); /* Improve readability */
 }
 
 .menu-text .span {
@@ -1124,7 +1181,9 @@ body.nav-active { overflow: hidden; }
   right: 0;
 }
 
-
+[data-visible="false"] {
+  display: none;
+}
 
 
 
@@ -1657,7 +1716,7 @@ textarea.input-field {
    * REUSED STYLE
    */
 
-  .grid-list { grid-template-columns: 1fr 1fr; }
+  .grid-list { grid-template-columns: 1fr 1fr; gap: 40px; }
 
   :is(.service, .event) .container { max-width: 820px; }
 
@@ -1785,7 +1844,7 @@ textarea.input-field {
 
 
   /**
-   * SERVICE
+   * promos
    */
 
   .service .shape { display: block; }
@@ -1868,17 +1927,6 @@ textarea.input-field {
   .testi-text {
     max-width: 910px;
     margin-inline: auto;
-  }
-
-
-
-  /**
-   * RESERVATION
-   */
-
-  .reservation-form {
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
   }
 
 
@@ -2001,7 +2049,7 @@ textarea.input-field {
    * HERO
    */
 
-  .hero { height: 880px; }
+  .hero { height: 95vh; }
 
   .hero-btn {
     bottom: 50px;
@@ -2012,7 +2060,7 @@ textarea.input-field {
 
 
   /**
-   * SERVICE
+   * PROMOS
    */
 
   .service .grid-list { gap: 150px; }
@@ -2052,8 +2100,10 @@ textarea.input-field {
    */
 
   .menu .grid-list {
-    gap: 55px 200px;
-    margin-block-end: 55px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 40px; /* Adjust spacing between items */
+    margin-block-end: 50px; /* Maintain spacing at the bottom */
   }
 
 
@@ -2160,106 +2210,193 @@ textarea.input-field {
   margin-bottom: 10px;
 }
 
-/* Base styles */
-.venue-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+/* Venue Section */
+.venueM-section {
+  padding: 5rem 2rem;
   background: #111;
+  min-height: 100vh;
 }
 
-.venue-slider {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  position: relative;
+/* Grid Layout */
+.venueM-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
-.venue-slide {
-  position: absolute;
+/* Card Style */
+.venueM-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.venueM-card:hover {
+  transform: scale(1.02);
+}
+
+.venueM-image img {
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease, transform 1s ease;
-  transform: translateX(100%);
-  z-index: 0;
-}
-
-.venue-slide.active {
-  opacity: 1;
-  transform: translateX(0);
-  z-index: 1;
-}
-
-.venue-image img {
-  width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
 }
 
-.venue-caption {
-  position: absolute;
-  bottom: 3rem;
-  right: 3rem;
+.venueM-caption {
+  padding: 1rem;
   color: #fff;
-  text-align: right;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 1rem 1.5rem;
+}
+
+.venueM-subtitle {
+  font-size: 0.9rem;
+  color: #ffcc70;
+  text-transform: uppercase;
+}
+
+.venueM-title {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Venue Modal */
+
+.venueM-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 300%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* When modal is active */
+.venueM-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal content box */
+.venueM-modal-content {
+  background: linear-gradient(145deg, #222, #111);
+  border-radius: 15px;
+  width: 80%;
+  max-width: 1100px;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #eee;
+  animation: popIn 0.4s ease;
+}
+
+/* Pop-in animation */
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Close button */
+.venueM-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.venueM-close:hover {
+  color: #ff6363;
+}
+
+/* Modal inner body */
+.venueM-modal-body {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Left (Carousel) */
+.venueM-carousel {
+  position: relative;
+  flex: 1 1 50%;
+  overflow: hidden;
   border-radius: 10px;
 }
 
-.venue-subtitle {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffcc70;
+#carouselTrack {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
-.venue-title {
-  font-size: 2rem;
-  margin: 0.5rem 0;
-  font-weight: bold;
+.venueM-carousel img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.venue-text {
-  font-size: 1rem;
+/* Carousel buttons */
+#prevBtn, #nextBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #555;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 2;
+  transition: background 0.3s, border 0.3s;
+}
+
+#prevBtn:hover, #nextBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: #ff6363;
+}
+
+#prevBtn { left: 10px; }
+#nextBtn { right: 10px; }
+
+/* Right (Description) */
+.venueM-description {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.venueM-description h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.venueM-description p {
+  font-size: 18px;
+  line-height: 1.6;
   color: #ccc;
 }
 
-/* Navigation buttons */
-.venue-btn {
-  display: grid;
-  position: absolute;
-  z-index: 1;
-  color: var(--gold-crayola);
-  font-size: 2.4rem;
-  border: 1px solid var(--gold-crayola);
-  width: 45px;
-  height: 45px;
-  place-items: center;
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-  transition: var(--transition-1);
+/* Responsive */
+@media (max-width: 768px) {
+  .venueM-modal-body {
+    flex-direction: column;
+  }
 }
 
-.venue-btn:is(:hover, :focus-visible) {
-  background-color: var(--gold-crayola);
-  color: var(--black);
-}
 
-.venue-prev {
-  left:30px;
-}
-
-.venue-next {
-  right: 30px;
-}
-
-.venue-btn ion-icon { transform: rotate(-45deg); }
-
-/* Modal Container */
+/* Modal promo*/
 .promo-modal {
   position: fixed;
   top: 0; left: 0;
@@ -2279,12 +2416,19 @@ textarea.input-field {
   border-radius: 16px;
   max-width: 1000px;
   width: 90%;
+  height: 90%;
   padding: 2rem;
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  animation: slideUp 0.4s ease;
+}
+
+/* Scrollable Content */
+.promo-scrollable {
+  overflow-y: auto;
+  padding-right: 1rem;
+  height: 100%;
 }
 
 /* Close Button */
@@ -2296,89 +2440,118 @@ textarea.input-field {
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s;
+  z-index: 10;
 }
 
 .promo-close:hover {
   color: #ff9f0d;
 }
 
-/* Body Layout */
-.promo-modal-body {
+/* Promo Sections */
+.promo-section {
+  margin-bottom: 2rem;
+}
+
+/* Top Section */
+.top-section {
   display: flex;
-  flex-direction: row;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
-/* Image Slider */
-.promo-slider-container {
-  position: relative;
-  width: 400px;
-  height: 300px;
-  overflow: hidden;
+.promo-image-container img {
+  width: 300px;
+  height: auto;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(255,255,255,0.05);
-}
-
-.promo-slider {
-  display: flex;
-  height: 100%;
-  transition: transform 0.4s ease-in-out;
-}
-
-.promo-slider img {
-  width: 100%;
-  height: 100%;
   object-fit: contain;
-  flex-shrink: 0;
   background-color: #000;
 }
-
-/* Slider Buttons */
-.promo-slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: none;
-  font-size: 1.4rem;
-  padding: 0.5rem 0.9rem;
-  cursor: pointer;
-  z-index: 2;
-  border-radius: 50%;
-  backdrop-filter: blur(4px);
-  transition: background 0.3s;
-}
-
-.promo-slider-btn:hover {
-  background: rgba(255, 159, 13, 0.9);
-  color: #000;
-}
-
-.promo-slider-btn.prev { left: 10px; }
-.promo-slider-btn.next { right: 10px; }
 
 /* Description */
 .promo-description {
   flex: 1;
-  max-width: 400px;
-  text-align: left;
+  min-width: 250px;
 }
 
 .promo-description h3 {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 3rem;
   color: #ff9f0d;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .promo-description p {
-  font-size: 1.05rem;
+  font-size: 2rem;
   color: #ccc;
   line-height: 1.6;
+}
+
+/* Menus Section */
+.menus-section h3 {
+  margin-top: 20px;
+  margin-bottom: 1rem;
+  color: #ff9f0d;
+}
+
+.menus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 5px;
+  justify-items: center; /* center images inside grid cells */
+}
+
+.menus-grid img {
+  width: 120px; /* smaller so more images fit */
+  height: 120px; /* same as width to keep square */
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+  border-radius: 12px;
+  display: block;
+}
+
+
+/* Venue Section */
+.venue-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 35px;
+  margin: 0;
+}
+
+.venue-section img {
+  width: 450px; /* made bigger */
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+#venueDescription {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem; /* slightly larger text */
+  text-align: left;
+}
+
+
+/* Request Button */
+.promo-request-btn {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.promo-request-btn:hover {
+  background-color: #e68900;
 }
 
 /* Hidden Modal */
@@ -2392,30 +2565,9 @@ textarea.input-field {
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; } 
-  to { transform: translateY(0); opacity: 1; }
-}
 
-.card-banner {
-  cursor: pointer;
-}
 
-.promo-request-btn {
-  margin-top: 1rem;
-  padding: 10px 20px;
-  background-color: #ff9800;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.promo-request-btn:hover {
-  background-color: #e68900;
-}
+/* event modal */
 
 .event-modal {
   display: none;
@@ -2557,3 +2709,403 @@ textarea.input-field {
   gap: 2rem;
 }
 
+/* music button */
+.floating-btn-group {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.music-btn {
+  background-color: #111;
+  border: none;
+  padding: 0.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+
+.music-btn:hover {
+  background-color: #333;
+}
+
+.music-btn img {
+  display: block;
+  width: 35px;
+  height: 35px;
+}
+
+
+
+
+/* modals responsiveness */
+
+/* Media Query for Larger Screens (Desktops) */
+@media (min-width: 1024px) {
+  .modal,
+  .venueM-modal,
+  .promo-modal {
+    width: 60%; /* Increase width for larger screens */
+    max-width: 800px; /* Adjust maximum width */
+  }
+
+  .modal-content,
+  .venueM-modal-content,
+  .promo-modal-content {
+    padding: 30px; /* Add more padding for larger screens */
+  }
+}
+
+/* Media Query for Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .modal,
+  .venueM-modal,
+  .promo-modal {
+    width: 80%; /* Adjust width for tablet screens */
+    max-width: 700px;
+  }
+
+  .modal-content,
+  .venueM-modal-content,
+  .promo-modal-content {
+    padding: 25px; /* Moderate padding for tablets */
+  }
+}
+
+/* Media Query for Phones */
+@media (max-width: 767px) {
+  .modal,
+  .venueM-modal,
+  .promo-modal {
+    width: 95%; /* Full width for smaller screens */
+    max-width: 500px;
+  }
+
+  .modal-content,
+  .venueM-modal-content,
+  .promo-modal-content {
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .venueM-carousel img,
+  .promo-modal img {
+    width: 100%; /* Ensure images are responsive */
+    height: auto;
+  }
+}
+
+/* Additional Styles for Carousel Responsiveness */
+.venueM-carousel-track,
+.promo-modal .menus-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.venueM-carousel img,
+.promo-modal .menus-grid img {
+  width: 100px; /* Default size for images */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .venueM-carousel img,
+  .promo-modal .menus-grid img {
+    width: 120px; /* Larger size for tablets */
+    height: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .venueM-carousel img,
+  .promo-modal .menus-grid img {
+    width: 150px; /* Larger size for desktops */
+    height: 150px;
+  }
+}
+/* Hide the modals initially */
+.login-container, .signup-container {
+  display: none; /* Initially hidden */
+  position: fixed; /* Fixed position to keep the modal centered even on scroll */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #2c2c2c;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  width: 90%; /* Makes modal responsive */
+  max-width: 400px;
+  color: #f8e9e0;
+  border: 1px solid #444;
+  z-index: 1000;
+  overflow-y: auto; /* Enables scrolling if content is too long */
+  max-height: 90vh; /* Set a max height to prevent overflowing */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for showing modals */
+}
+
+.login-container,
+.signup-container {
+  font-family: 'Segoe UI', sans-serif;
+  font: 2rem;
+  justify-content: center;
+  align-items: center; /* Ensures content stays centered */
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2 {
+  color: #e9b6a7;
+  margin-bottom: 1rem;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  width: 190px;
+  height: auto;
+  border-radius: 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+label {
+  text-align: left;
+  font-size: 1.5rem;
+  color: #e4cfc4;
+  margin-bottom: 0.3rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="file"] {
+  padding: 0.6rem;
+  border: 1px solid #555;
+  border-radius: 8px;
+  font-size: 2rem;
+  background-color: #1f1f1f;
+  color: #f8e9e0;
+}
+
+input::file-selector-button {
+  background: #444;
+  color: #e0b9a1;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+#password {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* Padding for the icon */
+  box-sizing: border-box;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #bbb;
+}
+
+.btn-login,
+.signup-btn {
+  background-color: #ff9800;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.btn-login:hover,
+.signup-btn:hover {
+  background-color: #e68900;
+}
+
+.optional {
+  font-size: 1.5rem;
+  color: #a98c7b;
+}
+
+.or-divider {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.google-btn {
+  background-color: #1a1a1a;
+  border: 1px solid #666;
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #f0c8b4;
+  transition: background 0.2s;
+}
+
+.google-btn:hover {
+  background-color: #2d2d2d;
+}
+
+.click {
+  color: #ff9800;
+}
+
+.profile-pic-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.profile-pic-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #e0b9a1;
+  box-shadow: 0 0 10px rgba(255, 213, 198, 0.2);
+  background-color: #1f1f1f;
+}
+
+/* editUser */
+.user-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 1rem;
+  align-items: center;
+  z-index: 9999;
+}
+
+.user-modal.hidden {
+  display: none;
+}
+
+.user-modal-content {
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.user-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.user-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-pic-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.user-img-edit {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 18px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--gold-crayola, #ffcc70);
+  box-shadow: 0 4px 12px rgba(255, 204, 112, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.field-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-group input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: #fff;
+}
+
+.user-img-edit:hover {
+  transform: scale(1.05);
+}
+
+.profile-pic-label small {
+  margin-top: 8px;
+  color: #aaa;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.logout-btn {
+  margin-top: 1rem;
+  background: #ff4d4d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#userProfile{
+  cursor: pointer;
+}

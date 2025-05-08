@@ -20,7 +20,7 @@ body {
   width: 30%;
   background-color: #2a2520;
   border-right: 2px solid #3b342d;
-  padding: 30px 20px;
+  padding: 90px 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -146,6 +146,27 @@ body {
 
 #sendButton:hover {
   background-color: #b38755;
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #111; /* dark background */
+  color: gold; /* gold text */
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid gold;
+  z-index: 1000;
+  transition: background 0.3s, color 0.3s;
+}
+
+.back-button:hover {
+  background-color: gold;
+  color: #111;
 }
 
 /* Responsive */
